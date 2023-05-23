@@ -1,0 +1,22 @@
+version: '1' #버전 명시
+services: #이곳에 실행하려는 컨테이너들을 정의
+  react: #컨테이너 이름
+    build:  #현 디렉토리에 있는 Dockerfile 사용
+      context: . #도커 이미지를 구성하기 위한 파일고 ㅏ폴더들이 있는 위치
+      dockerfile: DockerFile.dev #도커파일 지정
+    image: iii5412/docker-react-app-react
+    ports: #포트 매핑
+      - "3000:3000" # 포트 매핑 로컬포트:컨테이터 포트
+    volumes:  # 볼륨 설정
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app 
+    stdin_open: true # 리액트 앱을 끌때 필요(버그 수정)
+  tests:
+    build:
+      context: .
+      dockerfile: DockerFile.dev
+    image: iii5412/docker-react-app-react-tests
+    volumes:
+    - /usr/src/app/node_modules
+    - ./:/usr/src/app
+    command: ["npm", "run", "test"]
