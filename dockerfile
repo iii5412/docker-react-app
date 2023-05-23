@@ -13,7 +13,3 @@ CMD ["npm", "run", "build"]
 #Nginx 도커이미지를 이용한 Nginx 시작 명령어 작성
 FROM nginx
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-
-
-
-
