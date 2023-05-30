@@ -13,6 +13,7 @@ script:
   - docker run -e CI=true iii5412/docker-react-app npm run test -- --coverage 
   #CI=true는 travis CI에서 꼭 줘야하는 옵션이고 -- --coverage는 테스트 결과를 자세히 보기위한 옵션이다.
 
+
 deploy:
   edge: true
   provider: elasticbeanstalk
